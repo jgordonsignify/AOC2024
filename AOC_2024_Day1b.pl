@@ -9,7 +9,9 @@ while (my $line = <$input_fh>){
 }
 my @testinput = split ('\n',$inputstring);
 
+#array
 my @firstcol;
+#hashmap
 my %secondcol;
 my $sum = 0;
 foreach my $line (@testinput){
@@ -18,6 +20,7 @@ foreach my $line (@testinput){
     my @digits = split('   ',$line);
     #print join(',', @digits)."\n";
     push(@firstcol, int($digits[0]));
+    #increment count of occurences of second number
     $secondcol{int($digits[1])}++;
 }
 @firstcol = sort(@firstcol);
