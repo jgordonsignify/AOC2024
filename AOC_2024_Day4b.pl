@@ -28,6 +28,8 @@ sub SearchGrid {
         DUL => [-1, -1], # Diagonal up-left 
         DUR => [-1, 1], # Diagonal up-right
     );
+    # We're going to store a hashmap of the grid position of the center of the "X"
+    # and the directions it was found in that location so we can look for crossing instances later.
     my $foundgridhashref;
     foreach my $i (0 .. $rows - 1) {
         foreach my $j (0 .. $cols - 1) {
