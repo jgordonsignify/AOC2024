@@ -41,7 +41,7 @@ $yMax = $currentline-1;
 
 my $guardstart = clone($guardpos);
 MoveGuard($obstacles,$guardpos,$dir,$allguardpositions,$xMax,$yMax);
-print Dumper($allguardpositions);
+#print Dumper($allguardpositions);
 my $count = 0;
 
 #For each position visited (except the start) run a whatif scenario to see what would happen if we put an obstacle at that position
@@ -50,9 +50,8 @@ foreach my $xTest (keys %{$allguardpositions}) {
         #skip if starting position
         next if($yTest == $guardstart->[1] && $xTest == $guardstart->[0]);
         $obstacles->{$xTest}->{$yTest} = 1;
-        my $guardstart_clone = clone($guardstart);
         my $cleanguardpos;
-        if(MoveGuard($obstacles, $guardstart_clone, [0,-1], $cleanguardpos, $xMax, $yMax)){
+        if(MoveGuard($obstacles, [$guardstart->[0],$guardstart->[1]], [0,-1], $cleanguardpos, $xMax, $yMax)){
             $count++;
         }
         #remove the obstacle when we're done
@@ -75,7 +74,7 @@ sub MoveGuard{
     }
     else {
         if($allguardpositions->{$nextpos->[0]}->{$nextpos->[1]}->{$direction->[0]}->{$direction->[1]}){
-            #we've already been here with this direction of travel, we're in a loop.
+            #we've already been there with this direction of travel, we're in a loop.
             return 1;
         }
         $allguardpositions->{$nextpos->[0]}->{$nextpos->[1]}->{$direction->[0]}->{$direction->[1]}++;
