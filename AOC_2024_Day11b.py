@@ -1,5 +1,5 @@
 import sys
-
+sys.setrecursionlimit(20000);
 def read_stones(filename):
     stones = []
     try:
